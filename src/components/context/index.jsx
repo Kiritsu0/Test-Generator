@@ -4,21 +4,21 @@ export const GlobalContext = createContext(null);
 
 function Context({ children }) {
   const [testsNum, setTestsNum] = useState(0);
-  const [questionsNum, setQuestionsNum] = useState(0);
-  const [testTitle, setTestTitle] = useState("");
-  const [testDescription, setTestDescription] = useState("");
+  const [questionsTestsNum, setQuestionsTestsNum] = useState([]);
+  const [testsTitle, setTestsTitle] = useState([]);
+  const [testsDescription, setTestsDescription] = useState([]);
 
   return (
     <GlobalContext.Provider
       value={{
         testsNum,
         setTestsNum,
-        questionsNum,
-        setQuestionsNum,
-        testTitle,
-        setTestTitle,
-        testDescription,
-        setTestDescription,
+        questionsTestsNum,
+        setQuestionsTestsNum,
+        testsTitle,
+        setTestsTitle,
+        testsDescription,
+        setTestsDescription,
       }}
     >
       {children}
