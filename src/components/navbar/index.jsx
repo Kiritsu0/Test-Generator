@@ -2,7 +2,7 @@ import { Link } from "react-router-dom";
 
 function Nav() {
   return (
-    <div>
+    <div className='overflow-x-hidden'>
       <nav className="flex w-screen h-16 bg-emerald-700 text-white justify-around items-center">
         <div className="text-2xl md:text-4xl font-semibold">
           <Link to={'/'}>Test Generator</Link>

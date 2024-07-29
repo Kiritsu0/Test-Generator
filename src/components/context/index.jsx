@@ -7,6 +7,7 @@ function Context({ children }) {
   const [questionsTestsNum, setQuestionsTestsNum] = useState([]);
   const [testsTitle, setTestsTitle] = useState([]);
   const [testsDescription, setTestsDescription] = useState([]);
+  const [testsQuestions, setTestsQuestions] = useState([]);
 
   return (
     <GlobalContext.Provider
@@ -19,6 +20,8 @@ function Context({ children }) {
         setTestsTitle,
         testsDescription,
         setTestsDescription,
+        testsQuestions,
+        setTestsQuestions,
       }}
     >
       {children}

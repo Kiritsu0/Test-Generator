@@ -1,7 +1,7 @@
 import Nav from "../navbar";
 import { useState, useContext } from "react";
 import { GlobalContext } from "../context";
-import Questions from '../questions';
+import Questions from "../questions";
 
 function Generator() {
   // Variables
@@ -18,16 +18,16 @@ function Generator() {
     setQuestionsTestsNum((previous) => [...previous, number]);
     setTestsTitle((previous) => [...previous, title]);
     setTestsDescription((previous) => [...previous, description]);
-    setShowInfoInput(false)
+    setShowInfoInput(false);
   };
 
   return (
     <div>
       <Nav />
-      <div className="flex flex-col justify-center items-center mt-10">
+      <div className="flex flex-col justify-center items-center my-5">
         {showInfoInput ? (
           <div>
-            <div className="mb-4">
+            <div>
               <p className="text-lg font-semibold">
                 Fill the test information below!
               </p>
@@ -40,6 +40,7 @@ function Generator() {
                   placeholder="Enter number"
                   required
                   max="15"
+                  min="1"
                   value={number}
                   onChange={(e) => setNumber(e.target.value)}
                   className="w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-2 focus:ring-emerald-500"
@@ -64,14 +65,14 @@ function Generator() {
                 <input
                   type="submit"
                   value="Next"
-                  className="w-full cursor-pointer text-xl bg-cyan-600 rounded-md"
+                  className="w-full cursor-pointer text-xl bg-emerald-700 rounded-md"
                 />
               </form>
             </div>
           </div>
-        )
-        : <Questions />
-      }
+        ) : (
+          <Questions />
+        )}
       </div>
     </div>
   );
