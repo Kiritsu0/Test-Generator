@@ -8,8 +8,8 @@ function Nav() {
           <Link to={'/'}>Test Generator</Link>
         </div>
         <div className="flex gap-5 md:gap-10 text-xl md:text-2xl">
-          <Link className="hover:text-lime-200" to={"/"}>Home</Link>
-          <Link className="hover:text-lime-200" to={"/generator"}>Generate</Link>
+          <Link className="hover:text-emerald-500" to={"/"}>Home</Link>
+          <Link className="hover:text-emerald-500" to={"/generator"}>Generate</Link>
         </div>
       </nav>
     </div>
