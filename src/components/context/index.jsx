@@ -3,28 +3,28 @@ import { createContext, useState } from "react";
 export const GlobalContext = createContext(null);
 
 function Context({ children }) {
-  const [testsNum, setTestsNum] = useState(0);
-  const [questionsTestsNum, setQuestionsTestsNum] = useState([]);
-  const [testsTitle, setTestsTitle] = useState([]);
-  const [testsDescription, setTestsDescription] = useState([]);
-  const [testsQuestions, setTestsQuestions] = useState([]);
+  const [questionsTestNum, setQuestionsTestNum] = useState(0);
+  const [testTitle, setTestTitle] = useState("");
+  const [testDescription, setTestDescription] = useState("");
+  const [testQuestions, setTestQuestions] = useState([]);
   const [correctAnswers, setCorrectAnswers] = useState([]);
+  const [userAnswers, setUserAnswers] = useState([]);
 
   return (
     <GlobalContext.Provider
       value={{
-        testsNum,
-        setTestsNum,
-        questionsTestsNum,
-        setQuestionsTestsNum,
-        testsTitle,
-        setTestsTitle,
-        testsDescription,
-        setTestsDescription,
-        testsQuestions,
-        setTestsQuestions,
+        questionsTestNum,
+        setQuestionsTestNum,
+        testTitle,
+        setTestTitle,
+        testDescription,
+        setTestDescription,
+        testQuestions,
+        setTestQuestions,
         correctAnswers,
         setCorrectAnswers,
+        userAnswers,
+        setUserAnswers,
       }}
     >
       {children}

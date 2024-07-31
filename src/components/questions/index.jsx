@@ -5,20 +5,18 @@ import { useNavigate } from "react-router-dom";
 function Questions() {
   const navigate = useNavigate();
   const {
-    questionsTestsNum,
-    setTestsQuestions,
-    setTestsNum,
+    questionsTestNum,
+    setTestQuestions,
     correctAnswers,
     setCorrectAnswers,
   } = useContext(GlobalContext);
   const [questions, setQuestions] = useState([]);
 
   useEffect(() => {
-    const lastValue = parseInt(questionsTestsNum[questionsTestsNum.length - 1]);
     setQuestions(
-      Array(lastValue).fill({ question: "", options: ["", "", ""] })
+      Array(parseInt(questionsTestNum)).fill({ question: "", options: ["", "", ""] })
     );
-  }, [questionsTestsNum]);
+  }, [questionsTestNum]);
 
   const handleQuestionChange = (index, value) => {
     const newQuestions = questions.map((q, i) =>
@@ -38,21 +36,17 @@ function Questions() {
 
   const handleSubmit = (event) => {
     event.preventDefault();
-    setTestsQuestions((previous) => [...previous, questions]);
-    setTestsNum((previous) => {
-      const newTestsNum = previous + 1;
-      navigate("/test", { replace: true, state: { from: newTestsNum - 1 } });
-      return newTestsNum;
-    });
+    setTestQuestions(questions);
+
+    if (questions.length > 0) {
+      navigate("/test", { replace: true });
+    }
   };
 
   const handleCorrectOption = (qIndex, value) => {
     setCorrectAnswers((prevCorrectAnswers) => {
       const newCorrectAnswers = [...prevCorrectAnswers];
-      if (!newCorrectAnswers[qIndex]) {
-        newCorrectAnswers[qIndex] = [];
-      }
-      newCorrectAnswers[qIndex][0] = parseInt(value) - 1;
+      newCorrectAnswers[qIndex] = parseInt(value) - 1;
       return newCorrectAnswers;
     });
   };
@@ -104,7 +98,7 @@ function Questions() {
                   max="3"
                   min="1"
                   value={
-                    correctAnswers[qIndex] ? correctAnswers[qIndex][0] + 1 : ""
+                    correctAnswers[qIndex] ? correctAnswers[qIndex] + 1 : ""
                   }
                   onChange={(e) => handleCorrectOption(qIndex, e.target.value)}
                   className="w-32 px-3 py-2 focus:outline-none"

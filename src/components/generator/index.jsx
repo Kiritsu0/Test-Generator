@@ -4,20 +4,18 @@ import { GlobalContext } from "../context";
 import Questions from "../questions";
 
 function Generator() {
-  // Variables
-  const { setQuestionsTestsNum, setTestsTitle, setTestsDescription } =
+  const { setQuestionsTestNum, setTestTitle, setTestDescription } =
     useContext(GlobalContext);
   const [showInfoInput, setShowInfoInput] = useState(true);
   const [number, setNumber] = useState("");
   const [title, setTitle] = useState("");
   const [description, setDescription] = useState("");
 
-  // Functions
   const handleTestInfo = (e) => {
     e.preventDefault();
-    setQuestionsTestsNum((previous) => [...previous, number]);
-    setTestsTitle((previous) => [...previous, title]);
-    setTestsDescription((previous) => [...previous, description]);
+    setQuestionsTestNum(number);
+    setTestTitle(title);
+    setTestDescription(description);
     setShowInfoInput(false);
   };
 
@@ -37,7 +35,7 @@ function Generator() {
                 <input
                   type="number"
                   name="number"
-                  placeholder="Enter number"
+                  placeholder="Enter the number of questions"
                   required
                   max="15"
                   min="1"
