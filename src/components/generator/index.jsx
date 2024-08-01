@@ -16,7 +16,9 @@ function Generator() {
     setQuestionsTestNum(number);
     setTestTitle(title);
     setTestDescription(description);
-    setShowInfoInput(false);
+    setTimeout(() => {
+      setShowInfoInput(false);
+    }, 2000)
   };
 
   return (
@@ -26,11 +28,11 @@ function Generator() {
         {showInfoInput ? (
           <div>
             <div>
-              <p className="text-lg font-semibold">
+              <p className="text-lg font-semibold text-white">
                 Fill the test information below!
               </p>
             </div>
-            <div className="w-full max-w-96 border-black p-4 border rounded-md shadow-lg bg-white">
+            <div className="w-full max-w-96 p-4 rounded-md shadow-lg bg-slate-800">
               <form className="space-y-4" onSubmit={handleTestInfo}>
                 <input
                   type="number"
@@ -63,7 +65,7 @@ function Generator() {
                 <input
                   type="submit"
                   value="Next"
-                  className="w-full cursor-pointer text-xl bg-emerald-700 rounded-md"
+                  className="w-full cursor-pointer text-xl bg-emerald-500 text-white rounded-md"
                 />
               </form>
             </div>

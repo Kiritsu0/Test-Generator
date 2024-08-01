@@ -14,7 +14,10 @@ function Questions() {
 
   useEffect(() => {
     setQuestions(
-      Array(parseInt(questionsTestNum)).fill({ question: "", options: ["", "", ""] })
+      Array(parseInt(questionsTestNum)).fill({
+        question: "",
+        options: ["", "", ""],
+      })
     );
   }, [questionsTestNum]);
 
@@ -53,7 +56,7 @@ function Questions() {
 
   return (
     <div>
-      <p className="text-lg font-semibold">
+      <p className="text-lg font-semibold text-white">
         Fill the below questions and their options
       </p>
       <form
@@ -98,9 +101,21 @@ function Questions() {
                   max="3"
                   min="1"
                   value={
-                    correctAnswers[qIndex] ? correctAnswers[qIndex] + 1 : ""
+                    correctAnswers[qIndex] !== undefined
+                      ? correctAnswers[qIndex] + 1
+                      : ""
                   }
-                  onChange={(e) => handleCorrectOption(qIndex, e.target.value)}
+                  onChange={(e) => {
+                    const value = e.target.value;
+                    if (value === "") {
+                      handleCorrectOption(qIndex, "");
+                    } else {
+                      const intValue = parseInt(value, 10);
+                      if (!isNaN(intValue)) {
+                        handleCorrectOption(qIndex, intValue);
+                      }
+                    }
+                  }}
                   className="w-32 px-3 py-2 focus:outline-none"
                 />
               </div>
@@ -111,7 +126,7 @@ function Questions() {
         <input
           type="submit"
           value="Generate Test"
-          className="w-full h-9 cursor-pointer text-xl bg-emerald-700 rounded-md"
+          className="w-full h-9 cursor-pointer text-xl text-white bg-emerald-500 rounded-md"
         />
       </form>
     </div>
