@@ -28,8 +28,8 @@ function Generator() {
         {showInfoInput ? (
           <div>
             <div>
-              <p className="text-lg font-semibold text-white">
-                Fill the test information below!
+              <p className="text-lg font-semibold text-white max-w-96">
+                Fill the test information below to generate your own test questions!
               </p>
             </div>
             <div className="w-full max-w-96 p-4 rounded-md shadow-lg bg-slate-800">

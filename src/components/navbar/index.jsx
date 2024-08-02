@@ -9,7 +9,7 @@ function Nav() {
         </div>
         <div className="flex gap-5 md:gap-10 text-xl md:text-2xl">
           <Link className="hover:text-emerald-500" to={"/"}>Home</Link>
-          <Link className="hover:text-emerald-500" to={"/generator"}>Generate</Link>
+          <Link className="hover:text-emerald-500" to={"/generator"} title="Manual test generating">Generate</Link>
         </div>
       </nav>
     </div>
