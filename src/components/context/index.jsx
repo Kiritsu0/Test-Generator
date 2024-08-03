@@ -9,19 +9,22 @@ function Context({ children }) {
   const [testQuestions, setTestQuestions] = useState([]);
   const [correctAnswers, setCorrectAnswers] = useState([]);
   const [userAnswers, setUserAnswers] = useState([]);
-  const [data, setData] = useState('');
+  const [testsdata, setData] = useState([]);
   const [category, setCategory] = useState("");
-  const [defficulty, setDefficulty] = useState("");
+  const [difficulty, setDifficulty] = useState("easy");
   const [limit, setLimit] = useState("");
 
   const handleSubmit = async (event) => {
     event.preventDefault();
     try {
-      const res = await fetch("https://quizapi.io/api/v1/questions?apiKey=r9ZgzHlHshoGN2LWpz94mJsPFHZ0BcjFiOXIois5&category=bash&difficulty=Hard&limit=10");
+      const res = await fetch(
+        `https://opentdb.com/api.php?amount=${limit}&category=${category}&difficulty=${difficulty}`
+      );
       const data = await res.json();
-      if (Array.isArray(data) && data.length > 0) {
-        setData(data)
+      if (Array.isArray(data.results) && data.results.length > 0) {
+        setData((previous) => [...previous, data.results]);
       }
+      console.log(data.results)
     } catch (error) {
       console.log(error);
     }
@@ -45,11 +48,11 @@ function Context({ children }) {
         handleSubmit,
         category,
         setCategory,
-        defficulty,
-        setDefficulty,
+        difficulty,
+        setDifficulty,
         limit,
         setLimit,
-        data,
+        testsdata,
         setData,
       }}
     >
