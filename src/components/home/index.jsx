@@ -3,6 +3,7 @@ import Nav from "../navbar";
 import { GlobalContext } from "../context";
 import { useContext } from "react";
 import { CiFileOff } from "react-icons/ci";
+import { Link } from "react-router-dom";
 
 function Home() {
   const {
@@ -85,26 +86,54 @@ function Home() {
             <input
               type="submit"
               value="Generate Quiz"
-              className="w-full cursor-pointer text-xl bg-emerald-500 text-white rounded-md"
+              className="w-full cursor-pointer text-xl bg-emerald-500 text-white rounded-md py-1"
             />
           </form>
         </div>
-        <div className="bg-slate-800 min-h-52 mt-10 pt-10 overflow-hidden">
+        <div className="bg-slate-800 min-h-52 mt-10 p-7">
           {testsdata && testsdata.length > 0 ? (
             <div className="flex flex-col gap-5">
               {testsdata.map((test, testIndex) => (
-                <div key={testIndex} className="w-full bg-white">
-                  <span className="font-semibold text-xl text-emerald-500">Test {testIndex + 1}</span>
+                <div
+                  key={testIndex}
+                  className="w-full flex flex-col bg-white p-2 rounded-md"
+                >
+                  <span className="font-semibold text-2xl text-emerald-500">
+                    Test {testIndex + 1}
+                  </span>
                   <div className="text-lg flex gap-2">
                     <span className="text-xl font-semibold">Categories:</span>
-                    {test.map((question, questionIndex) => (
-                      <span key={questionIndex}>{question.category} </span>
-                    ))}
+                    {test
+                      .reduce((uniqueCategories, question) => {
+                        if (!uniqueCategories.includes(question.category)) {
+                          uniqueCategories.push(question.category);
+                        }
+                        return uniqueCategories;
+                      }, [])
+                      .map((category, index, array) => (
+                        <span key={index}>
+                          {category.replace("&amp;", "&")}
+                          {index < array.length - 1 ? " - " : ""}
+                        </span>
+                      ))}
                   </div>
                   <div className="text-lg flex gap-2">
-                      <span className="text-xl font-semibold">Questions number:</span>
-                      {test.length}
-                    </div>
+                    <span className="text-xl font-semibold">Difficulty:</span>
+                    <span>{test[0].difficulty}</span>
+                  </div>
+                  <div className="text-lg flex gap-2">
+                    <span className="text-xl font-semibold">
+                      Questions number:
+                    </span>
+                    <span>{test.length}</span>
+                  </div>
+                  <Link
+                    to="/test"
+                    state={{ test: test, testIndex: testIndex}}
+                    className="w-28 text-center self-end cursor-pointer text-xl bg-emerald-500 text-white rounded-md py-1 px-2"
+                  >
+                    Start Test
+                  </Link>
                 </div>
               ))}
             </div>

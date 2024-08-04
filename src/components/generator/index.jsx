@@ -65,7 +65,7 @@ function Generator() {
                 <input
                   type="submit"
                   value="Next"
-                  className="w-full cursor-pointer text-xl bg-emerald-500 text-white rounded-md"
+                  className="w-full cursor-pointer text-xl bg-emerald-500 text-white rounded-md py-1"
                 />
               </form>
             </div>

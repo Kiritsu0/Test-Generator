@@ -9,6 +9,7 @@ function Questions() {
     setTestQuestions,
     correctAnswers,
     setCorrectAnswers,
+    setManualTest,
   } = useContext(GlobalContext);
   const [questions, setQuestions] = useState([]);
 
@@ -40,7 +41,7 @@ function Questions() {
   const handleSubmit = (event) => {
     event.preventDefault();
     setTestQuestions(questions);
-
+    setManualTest(true);
     if (questions.length > 0) {
       navigate("/test", { replace: true });
     }
