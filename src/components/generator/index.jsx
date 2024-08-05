@@ -16,15 +16,13 @@ function Generator() {
     setQuestionsTestNum(number);
     setTestTitle(title);
     setTestDescription(description);
-    setTimeout(() => {
-      setShowInfoInput(false);
-    }, 2000)
+    setShowInfoInput(false);
   };
 
   return (
     <div>
       <Nav />
-      <div className="flex flex-col justify-center items-center my-5">
+      <div className="flex flex-col justify-center items-center mx-10 my-5">
         {showInfoInput ? (
           <div>
             <div>

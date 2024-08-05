@@ -4,8 +4,6 @@ import { GlobalContext } from "../context";
 import { useLocation } from "react-router-dom";
 
 function Test() {
-  const location = useLocation();
-  const { test, testIndex } = location.state;
   const {
     testTitle,
     testDescription,
@@ -19,6 +17,9 @@ function Test() {
   const [score, setScore] = useState(0);
   const [questionsWithOptions, setQuestionsWithOptions] = useState([]);
   const [correctAnswerIndices, setCorrectAnswerIndices] = useState([]);
+  const location = useLocation();
+  const { test, testIndex } = manualTest ? "" : location.state;
+
 
   useEffect(() => {
     if (test && test.length > 0) {
@@ -152,7 +153,6 @@ function Test() {
           <h1 className="text-4xl text-white font-bold mb-6 text-center">{`Test ${
             testIndex + 1
           }`}</h1>
-          {/* <p className="text-lg mb-6">{testDescription}</p> */}
           <form onSubmit={handleSubmit}>
             {questionsWithOptions && questionsWithOptions.length > 0 ? (
               <>

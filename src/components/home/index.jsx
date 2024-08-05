@@ -4,6 +4,7 @@ import { GlobalContext } from "../context";
 import { useContext } from "react";
 import { CiFileOff } from "react-icons/ci";
 import { Link } from "react-router-dom";
+import BeatLoader from "react-spinners/BeatLoader";
 
 function Home() {
   const {
@@ -13,6 +14,8 @@ function Home() {
     limit,
     setLimit,
     testsdata,
+    setManualTest,
+    loading,
   } = useContext(GlobalContext);
 
   const categoryOptions = [
@@ -47,8 +50,8 @@ function Home() {
       <header>
         <Nav />
       </header>
-      <div className="container-height">
-        <div className="mt-10 mx-auto max-w-96 p-4 rounded-md shadow-lg bg-slate-800">
+      <div className="container-height transition" style={{opacity: loading ? "70%" : "100%"}}>
+        <div className="mt-10 mx-10 sm:mx-auto max-w-96 p-4 rounded-md shadow-lg bg-slate-800">
           <p className="text-white text-lg mb-5">
             To let us generate your quiz fill the below info
           </p>
@@ -101,7 +104,7 @@ function Home() {
                   <span className="font-semibold text-2xl text-emerald-500">
                     Test {testIndex + 1}
                   </span>
-                  <div className="text-lg flex gap-2">
+                  <div className="text-lg flex sm:flex-row flex-col gap-1 sm:gap-2 ml-10">
                     <span className="text-xl font-semibold">Categories:</span>
                     {test
                       .reduce((uniqueCategories, question) => {
@@ -117,11 +120,11 @@ function Home() {
                         </span>
                       ))}
                   </div>
-                  <div className="text-lg flex gap-2">
+                  <div className="text-lg flex gap-2 ml-10">
                     <span className="text-xl font-semibold">Difficulty:</span>
                     <span>{test[0].difficulty}</span>
                   </div>
-                  <div className="text-lg flex gap-2">
+                  <div className="text-lg flex gap-2 ml-10">
                     <span className="text-xl font-semibold">
                       Questions number:
                     </span>
@@ -129,8 +132,9 @@ function Home() {
                   </div>
                   <Link
                     to="/test"
-                    state={{ test: test, testIndex: testIndex}}
+                    state={{ test: test, testIndex: testIndex }}
                     className="w-28 text-center self-end cursor-pointer text-xl bg-emerald-500 text-white rounded-md py-1 px-2"
+                    onClick={() => setManualTest(false)}
                   >
                     Start Test
                   </Link>
@@ -144,6 +148,15 @@ function Home() {
             </div>
           )}
         </div>
+      </div>
+      <div className="absolute top-1/2 loader-centered transition">
+        <BeatLoader
+          color="#2d8160"
+          loading={loading}
+          size={50}
+          aria-label="Loading Spinner"
+          data-testid="loader"
+        />
       </div>
     </div>
   );

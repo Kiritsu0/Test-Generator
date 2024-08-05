@@ -14,3 +14,7 @@ code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, "Courier New",
     monospace;
 }
+
+.loader-centered {
+  left: calc(50% - 100px);
+}

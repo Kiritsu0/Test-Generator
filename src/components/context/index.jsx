@@ -14,9 +14,11 @@ function Context({ children }) {
   const [difficulty, setDifficulty] = useState("easy");
   const [limit, setLimit] = useState("");
   const [manualTest, setManualTest] = useState(false);
+  const [loading, setLoading] = useState(false);
 
   const handleSubmit = async (event) => {
     event.preventDefault();
+    setLoading(true)
     try {
       const res = await fetch(
         `https://opentdb.com/api.php?amount=${limit}&category=${category}&difficulty=${difficulty}&type=multiple`
@@ -25,10 +27,11 @@ function Context({ children }) {
       if (Array.isArray(data.results) && data.results.length > 0) {
         setData((previous) => [...previous, data.results]);
         setLimit("");
+        setLoading(false);
       }
-      console.log(data.results);
     } catch (error) {
       console.log(error);
+      setLoading(false);
     }
   };
 
@@ -58,6 +61,8 @@ function Context({ children }) {
         setData,
         manualTest,
         setManualTest,
+        loading,
+        setLoading,
       }}
     >
       {children}
