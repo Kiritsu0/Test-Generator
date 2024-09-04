@@ -1,5 +1,6 @@
 import "./style.css";
 import Nav from "../navbar";
+import Footer from "../footer";
 import { GlobalContext } from "../context";
 import { useContext } from "react";
 import { CiFileOff } from "react-icons/ci";
@@ -158,6 +159,7 @@ function Home() {
           data-testid="loader"
         />
       </div>
+      <Footer />
     </div>
   );
 }

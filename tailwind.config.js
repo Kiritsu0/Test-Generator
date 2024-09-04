@@ -6,6 +6,9 @@ module.exports = {
   theme: {
     extend: {
       colors: {},
+      boxShadow: {
+        'custom': '0 0 15px rgba(255, 255, 255)',
+      },
     }
   },
   plugins: [],

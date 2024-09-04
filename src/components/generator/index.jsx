@@ -1,7 +1,8 @@
 import Nav from "../navbar";
+import Questions from "../questions";
+import Footer from "../footer";
 import { useState, useContext } from "react";
 import { GlobalContext } from "../context";
-import Questions from "../questions";
 
 function Generator() {
   const { setQuestionsTestNum, setTestTitle, setTestDescription } =
@@ -22,7 +23,7 @@ function Generator() {
   return (
     <div>
       <Nav />
-      <div className="flex flex-col justify-center items-center mx-10 my-5">
+      <div className="flex flex-col justify-center items-center mx-10 my-5 mb-24">
         {showInfoInput ? (
           <div>
             <div>
@@ -72,6 +73,7 @@ function Generator() {
           <Questions />
         )}
       </div>
+      <Footer />
     </div>
   );
 }
