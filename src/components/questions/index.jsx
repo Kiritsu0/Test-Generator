@@ -14,9 +14,12 @@ function Questions() {
     loading,
     setLoading,
   } = useContext(GlobalContext);
+
+  // State to manage the list of questions
   const [questions, setQuestions] = useState([]);
 
   useEffect(() => {
+    // Set loading state and initialize questions with default values
     setLoading(true);
     setQuestions(
       Array(parseInt(questionsTestNum)).fill({
@@ -28,6 +31,7 @@ function Questions() {
     setLoading(false);
   }, [questionsTestNum, setLoading, setCorrectAnswers]);
 
+  // Handle changes in the question text
   const handleQuestionChange = (index, value) => {
     const newQuestions = questions.map((q, i) =>
       i === index ? { ...q, question: value } : q
@@ -35,6 +39,7 @@ function Questions() {
     setQuestions(newQuestions);
   };
 
+  // Handle changes in the options text
   const handleOptionChange = (qIndex, oIndex, value) => {
     const newQuestions = questions.map((q, i) =>
       i === qIndex
@@ -44,19 +49,21 @@ function Questions() {
     setQuestions(newQuestions);
   };
 
+  // Handle form submission
   const handleSubmit = (event) => {
     event.preventDefault();
-    setTestQuestions(questions);
-    setManualTest(true);
+    setTestQuestions(questions); // Set the questions for the test
+    setManualTest(true); // Mark the test as manual
     if (questions.length > 0) {
-      navigate("/test", { replace: true });
+      navigate("/test", { replace: true }); // Navigate to the test page
     }
   };
 
+  // Handle the correct option selection for each question
   const handleCorrectOption = (qIndex, value) => {
     setCorrectAnswers((prevCorrectAnswers) => {
       const newCorrectAnswers = [...prevCorrectAnswers];
-      newCorrectAnswers[qIndex] = parseInt(value) - 1;
+      newCorrectAnswers[qIndex] = parseInt(value) - 1; // Store the index of the correct option
       return newCorrectAnswers;
     });
   };
@@ -64,6 +71,7 @@ function Questions() {
   return (
     <div>
       {loading ? (
+        // Display a loader while loading data
         <div className="absolute top-1/2 loader-centered transition">
           <BeatLoader
             color="#2d8160"
@@ -145,7 +153,7 @@ function Questions() {
             <input
               type="submit"
               value="Generate Test"
-              className="w-full h-9 cursor-pointer text-xl text-white bg-emerald-500 rounded-md"
+              className="w-full h-9 cursor-pointer text-xl text-white bg-emerald-500 hover:bg-emerald-700 rounded-md"
             />
           </form>
         </div>

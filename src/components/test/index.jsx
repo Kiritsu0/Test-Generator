@@ -12,19 +12,23 @@ function Test() {
     correctAnswers,
     manualTest,
   } = useContext(GlobalContext);
+
+  // Local state to manage user answers, result, score, and questions with options
   const [userAnswers, setUserAnswersLocal] = useState([]);
   const [result, setResult] = useState(false);
   const [score, setScore] = useState(0);
   const [questionsWithOptions, setQuestionsWithOptions] = useState([]);
   const [correctAnswerIndices, setCorrectAnswerIndices] = useState([]);
+
   const location = useLocation();
   const { test, testIndex } = manualTest ? "" : location.state;
 
-
+  // Effect to process and shuffle questions if a test is provided
   useEffect(() => {
     if (test && test.length > 0) {
       const processedQuestions = test.map((question) => {
         const { incorrect_answers, correct_answer } = question;
+        // Randomly insert the correct answer into the options array
         const randomIndex = Math.floor(
           Math.random() * (incorrect_answers.length + 1)
         );
@@ -35,6 +39,7 @@ function Test() {
 
       setQuestionsWithOptions(processedQuestions);
 
+      // Store the index of the correct answer in the options array
       const indices = processedQuestions.map((question) =>
         question.options.indexOf(question.correct_answer)
       );
@@ -43,20 +48,24 @@ function Test() {
     }
   }, [test]);
 
+  // Handle changes in selected options
   const handleOptionChange = (qIndex, oIndex) => {
     const newAnswers = [...userAnswers];
     newAnswers[qIndex] = oIndex;
     setUserAnswersLocal(newAnswers);
   };
 
+  // Calculate the score based on user answers
   const calculateScore = () => {
     let correctCount = 0;
     userAnswers.forEach((answer, index) => {
       if (manualTest) {
+        // Check against manually set correct answers
         if (answer === correctAnswers[index]) {
           correctCount++;
         }
       } else {
+        // Check against shuffled correct answer indices
         if (answer === correctAnswerIndices[index]) {
           correctCount++;
         }
@@ -65,13 +74,15 @@ function Test() {
     setScore(correctCount);
   };
 
+  // Handle form submission
   const handleSubmit = (event) => {
     event.preventDefault();
-    setUserAnswers(userAnswers);
-    calculateScore();
-    setResult(true);
+    setUserAnswers(userAnswers); // Update global state with user answers
+    calculateScore(); // Calculate the score
+    setResult(true); // Show the result
   };
 
+  // Handle the "Try Again" button click
   const handleTryAgain = () => {
     setUserAnswersLocal([]);
     setResult(false);
@@ -82,7 +93,8 @@ function Test() {
     <div>
       <Nav />
       {result ? (
-        <div className="p-4 max-w-[50rem] mx-5 md:mx-auto bg-slate-800 mt-20 rounded-md shadow-md">
+        // Display the result if the test has been submitted
+        <div className="p-4 max-w-[50rem] mx-5 md:mx-auto bg-cyan-700 mt-20 rounded-md shadow-md">
           <h1 className="text-4xl text-white font-bold mb-6 text-center">
             Test Result
           </h1>
@@ -93,13 +105,14 @@ function Test() {
           </p>
           <button
             onClick={handleTryAgain}
-            className="mt-4 bg-emerald-500 text-white py-2 px-4 rounded-md block mx-auto"
+            className="mt-4 bg-emerald-500 hover:bg-emerald-700 text-white py-2 px-4 rounded-md block mx-auto"
           >
             Try Again
           </button>
         </div>
       ) : manualTest ? (
-        <div className="p-4 max-w-[50rem] mx-5 mb-5 md:mx-auto bg-slate-800 mt-1 rounded-md">
+        // Display the test form for manual tests
+        <div className="p-4 max-w-[50rem] mx-5 mb-5 md:mx-auto bg-cyan-700 mt-1 rounded-md">
           <h1 className="text-4xl text-white font-bold mb-6 text-center">
             {testTitle}
           </h1>
@@ -136,7 +149,7 @@ function Test() {
                 ))}
                 <button
                   type="submit"
-                  className="mt-4 bg-emerald-700 text-white py-2 px-4 rounded-md block mx-auto"
+                  className="mt-4 bg-emerald-500 hover:bg-emerald-700 text-white py-2 px-4 rounded-lg block mx-auto"
                 >
                   Submit
                 </button>
@@ -149,7 +162,8 @@ function Test() {
           </form>
         </div>
       ) : (
-        <div className="p-4 max-w-[50rem] mx-5 mb-5 md:mx-auto bg-slate-800 mt-1 rounded-md">
+        // Display the test form for automatic tests
+        <div className="p-4 max-w-[50rem] mx-5 mb-5 md:mx-auto bg-cyan-700 mt-1 rounded-md">
           <h1 className="text-4xl text-white font-bold mb-6 text-center">{`Test ${
             testIndex + 1
           }`}</h1>
@@ -185,7 +199,7 @@ function Test() {
                 ))}
                 <button
                   type="submit"
-                  className="mt-4 bg-emerald-700 text-white py-2 px-4 rounded-md block mx-auto"
+                  className="mt-4 bg-emerald-500 hover:bg-emerald-700 text-white text-xl py-1 px-6 rounded-lg block mx-auto"
                 >
                   Submit
                 </button>

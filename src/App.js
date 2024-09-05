@@ -4,11 +4,13 @@ import Generator from "./components/generator";
 import Test from "./components/test";
 import Context from './components/context';
 import Main from './components/main';
+import Loader from './components/loader';
 
 function App() {
   return (
     <Context>
       <HashRouter>
+        <Loader />
         <Routes>
           <Route path='/' element={<Main />} />
           <Route path='/home' element={<Home />}/>
