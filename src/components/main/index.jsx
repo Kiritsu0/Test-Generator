@@ -9,10 +9,6 @@ import { GrGroup } from "react-icons/gr";
 function Main() {
   return (
     <div>
-      <header>
-        <Nav />
-      </header>
-
       <section className="h-1/2 pt-28 pb-5 flex flex-col md:flex-row gap-5 md:gap-0 justify-around items-center bg-cyan-700">
         <div className="max-w-[28rem] space-y-7 mx-5">
           <p className="text-5xl text-white">
@@ -24,7 +20,7 @@ function Main() {
           </p>
           <Link
             to="/home"
-            className="bg-emerald-500 hover:bg-cyan-700 border-2 border-transparent hover:border-white w-64 transition-all ease-in delay-150 duration-200 px-6 py-2 rounded-full flex gap-2 hover:gap-5 items-center text-xl text-white"
+            className="bg-emerald-500 hover:bg-cyan-700 border-2 border-transparent hover:border-white w-60 md:w-64 transition-all ease-in delay-150 duration-200 px-6 py-2 rounded-full flex gap-2 hover:gap-7 items-center md:text-xl text-white"
           >
             Get started for free
             <FaArrowRight className="text-lg" />
@@ -33,7 +29,7 @@ function Main() {
         <img
           src={`${process.env.PUBLIC_URL}/image_1.png`}
           alt="image"
-          className="w-1/2 min-w-96 h-96 mr-5 rounded-xl shadow-custom"
+          className="w-1/2 min-w-96 h-96 mx-5 rounded-xl shadow-custom"
         />
       </section>
 

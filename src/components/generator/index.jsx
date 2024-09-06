@@ -28,9 +28,6 @@ function Generator() {
 
   return (
     <div>
-      {/* Render navigation bar */}
-      <Nav />
-
       <div className="flex flex-col justify-center items-center mx-10 my-5 mb-24">
         {showInfoInput ? (
           <div>

@@ -50,14 +50,9 @@ function Home() {
 
   return (
     <div>
-      {/* Render navigation bar */}
-      <header>
-        <Nav />
-      </header>
-
       {/* Main content container with conditional opacity based on loading state */}
       <div
-        className="container-height transition"
+        className="transition"
         style={{ opacity: loading ? "70%" : "100%" }}
       >
         <div className="mt-10 mx-10 sm:mx-auto max-w-96 p-4 rounded-md shadow-lg bg-slate-800">

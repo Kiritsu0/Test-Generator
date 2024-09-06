@@ -5,11 +5,13 @@ import Test from "./components/test";
 import Context from './components/context';
 import Main from './components/main';
 import Loader from './components/loader';
+import Nav from "./components/navbar";
 
 function App() {
   return (
     <Context>
       <HashRouter>
+        <Nav />
         <Loader />
         <Routes>
           <Route path='/' element={<Main />} />

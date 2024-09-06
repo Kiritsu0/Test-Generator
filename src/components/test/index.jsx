@@ -91,7 +91,6 @@ function Test() {
 
   return (
     <div>
-      <Nav />
       {result ? (
         // Display the result if the test has been submitted
         <div className="p-4 max-w-[50rem] mx-5 md:mx-auto bg-cyan-700 mt-20 rounded-md shadow-md">
