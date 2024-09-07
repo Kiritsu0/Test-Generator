@@ -1,4 +1,3 @@
-import Nav from "../navbar";
 import Footer from "../footer";
 import { Link } from "react-router-dom";
 import { FaArrowRight } from "react-icons/fa";
@@ -20,7 +19,7 @@ function Main() {
           </p>
           <Link
             to="/home"
-            className="bg-emerald-500 hover:bg-cyan-700 border-2 border-transparent hover:border-white w-60 md:w-64 transition-all ease-in delay-150 duration-200 px-6 py-2 rounded-full flex gap-2 hover:gap-7 items-center md:text-xl text-white"
+            className="bg-emerald-500 hover:bg-cyan-700 border-2 border-transparent hover:border-white w-60 md:w-64 transition-all ease-in delay-150 duration-200 px-6 py-2 rounded-full flex gap-2 hover:gap-5 items-center md:text-xl text-white"
           >
             Get started for free
             <FaArrowRight className="text-lg" />
@@ -28,7 +27,7 @@ function Main() {
         </div>
         <img
           src={`${process.env.PUBLIC_URL}/image_1.png`}
-          alt="image"
+          alt="side-image"
           className="w-1/2 min-w-96 h-96 mx-5 rounded-xl shadow-custom"
         />
       </section>
