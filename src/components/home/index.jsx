@@ -6,6 +6,7 @@ import { useContext } from "react";
 import { CiFileOff } from "react-icons/ci";
 import { Link } from "react-router-dom";
 import BeatLoader from "react-spinners/BeatLoader";
+import { Helmet } from "react-helmet-async";
 
 function Home() {
   // Destructure relevant values and functions from the global context
@@ -50,11 +51,23 @@ function Home() {
 
   return (
     <div>
+      <Helmet>
+        <meta
+          name="description"
+          content="Create automated tests effortlessly with our Test Generator. Choose your subject, customize questions, and generate quizzes in seconds. Simplify your assessment process today!"
+        />
+        <meta
+          name="keywords"
+          content="automated test creation, create tests online, automatic quiz generator, test maker, educational assessment, instant test creation, custom quizzes, question generation"
+        />
+        <link
+          rel="canonical"
+          href="https://kiritsu0.github.io/Test-Generator/#/home"
+        />
+        <title>Generate Your Tests Easily and Effortlessly</title>
+      </Helmet>
       {/* Main content container with conditional opacity based on loading state */}
-      <div
-        className="transition"
-        style={{ opacity: loading ? "70%" : "100%" }}
-      >
+      <div className="transition" style={{ opacity: loading ? "70%" : "100%" }}>
         <div className="mt-10 mx-10 sm:mx-auto max-w-96 p-4 rounded-md shadow-lg bg-slate-800">
           <p className="text-white text-lg mb-5">
             To let us generate your quiz fill the below info

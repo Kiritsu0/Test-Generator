@@ -1,0 +1,3 @@
+https://kiritsu0.github.io/Test-Generator/
+https://kiritsu0.github.io/Test-Generator/#/home
+https://kiritsu0.github.io/Test-Generator/#/generator

@@ -3,6 +3,7 @@ import Questions from "../questions";
 import Footer from "../footer";
 import { useState, useContext } from "react";
 import { GlobalContext } from "../context";
+import { Helmet } from "react-helmet-async";
 
 function Generator() {
   // Destructure context values to set number of questions, title, and description
@@ -28,6 +29,22 @@ function Generator() {
 
   return (
     <div>
+      <Helmet>
+        <meta
+          name="description"
+          content="Manually create custom tests with our Test Generator. Design your own questions, choose formats, and build assessments tailored to your needs. Start creating your test today!"
+        />
+        <meta
+          name="keywords"
+          content="manual test creation, create custom tests, test builder, personalized quizzes, question design, educational tools, assessment creation"
+        />
+        <link
+          rel="canonical"
+          href="https://kiritsu0.github.io/Test-Generator/#/generator"
+        />
+        <title>Manually Create Your Custom Tests</title>
+      </Helmet>
+
       <div className="flex flex-col justify-center items-center mx-10 my-5 mb-24">
         {showInfoInput ? (
           <div>
